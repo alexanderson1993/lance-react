@@ -21,14 +21,21 @@ class App extends Component {
               networkStatus @client {
                 isConnected
               }
+              lanceWorld @client {
+                objects
+              }
             }
           `}
         >
-          {({ data }) => {
+          {({ loading, data }) => {
+            if (loading) return null;
             return (
-              <p>
-                Connection status: {data.networkStatus.isConnected.toString()}
-              </p>
+              <div>
+                <p>
+                  Connection status: {data.networkStatus.isConnected.toString()}
+                </p>
+                <p>Game Objects: {data.lanceWorld.objects.length}</p>
+              </div>
             );
           }}
         </Query>

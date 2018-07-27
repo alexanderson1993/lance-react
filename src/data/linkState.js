@@ -14,6 +14,17 @@ const stateLink = withClientState({
         };
         cacheData.writeData({ data });
         return null;
+      },
+
+      updateLanceObjects: (_, { objects }, { cache: cacheData }) => {
+        const data = {
+          lanceWorld: {
+            __typename: "LanceWorld",
+            objects
+          }
+        };
+        cacheData.writeData({ data });
+        return null;
       }
     }
   },
@@ -21,6 +32,10 @@ const stateLink = withClientState({
     networkStatus: {
       __typename: "NetworkStatus",
       isConnected: true
+    },
+    lanceWorld: {
+      __typename: "LanceWorld",
+      objects: []
     }
   }
 });

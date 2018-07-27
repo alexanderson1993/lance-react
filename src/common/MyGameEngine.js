@@ -1,15 +1,15 @@
-import TwoVector from "lance/serialize/TwoVector";
+import TwoVector from "lance-gg/es5/serialize/TwoVector";
 import Paddle from "./Paddle";
 import Ball from "./Ball";
+import GameEngine from "lance-gg/es5/GameEngine";
+import SimplePhysicsEngine from "lance-gg/es5/physics/SimplePhysicsEngine";
+import PlayerAvatar from "./PlayerAvatar";
+
 const PADDING = 20;
 const WIDTH = 400;
 const HEIGHT = 400;
 const PADDLE_WIDTH = 10;
 const PADDLE_HEIGHT = 50;
-
-import GameEngine from "lance/GameEngine";
-import SimplePhysicsEngine from "lance/physics/SimplePhysicsEngine";
-import PlayerAvatar from "./PlayerAvatar";
 
 export default class MyGameEngine extends GameEngine {
   constructor(options) {

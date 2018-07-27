@@ -1,5 +1,5 @@
-import ClientEngine from "lance/ClientEngine";
-import KeyboardControls from "lance/controls/KeyboardControls";
+import ClientEngine from "lance-gg/es5/ClientEngine";
+import KeyboardControls from "lance-gg/es5/controls/KeyboardControls";
 import MyRenderer from "./renderer";
 
 export default class MyClientEngine extends ClientEngine {

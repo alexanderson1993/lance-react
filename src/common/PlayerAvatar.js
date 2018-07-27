@@ -1,4 +1,4 @@
-import DynamicObject from "lance/serialize/DynamicObject";
+import DynamicObject from "lance-gg/es5/serialize/DynamicObject";
 
 export default class PlayerAvatar extends DynamicObject {
   static get netScheme() {

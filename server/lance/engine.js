@@ -1,5 +1,5 @@
-import ServerEngine from "lance/ServerEngine";
-import PlayerAvatar from "../../common/PlayerAvatar";
+import ServerEngine from "lance-gg/es5/ServerEngine";
+import PlayerAvatar from "../../src/common/PlayerAvatar";
 
 export default class MyServerEngine extends ServerEngine {
   constructor(io, gameEngine, inputOptions) {

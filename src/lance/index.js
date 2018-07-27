@@ -1,12 +1,12 @@
 import querystring from "query-string";
 import MyClientEngine from "./engine";
-import MyGameEngine from "../../common/MyGameEngine";
+import MyGameEngine from "../common/MyGameEngine";
 const qsOptions = querystring.parse(window.location.search);
 
 // default options, overwritten by query-string options
 // is sent to both game engine and client engine
 const defaults = {
-  traceLevel: 1,
+  // traceLevel: 1,
   delayInputCount: 3,
   scheduler: "render-schedule",
   syncOptions: {
