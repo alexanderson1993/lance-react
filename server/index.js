@@ -1,5 +1,4 @@
 import express from "express";
-import graphqlServer from "./data";
 import socketIO from "socket.io";
 
 // Game Server
@@ -10,12 +9,8 @@ const PORT = 3001;
 const app = express();
 app.get("/", (req, res) => res.send("hello world"));
 
-graphqlServer.applyMiddleware({ app }); // app is from an existing express app
-
 const requestHandler = app.listen({ port: PORT }, () =>
-  console.log(
-    `🚀 Server ready at http://localhost:${PORT}${graphqlServer.graphqlPath}`
-  )
+  console.log(`🚀 Server ready at http://localhost:${PORT}`)
 );
 
 const io = socketIO(requestHandler);

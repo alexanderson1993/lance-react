@@ -10,4 +10,9 @@ export default class MyClientEngine extends ClientEngine {
     this.controls.bindKey("up", "up", { repeat: true });
     this.controls.bindKey("down", "down", { repeat: true });
   }
+  start = params => {
+    if (this.started) return;
+    super.start(params);
+    this.started = true;
+  };
 }

@@ -59,50 +59,59 @@ export default class MyGameEngine extends GameEngine {
   }
 
   postStepHandleBall() {
-    if (!this.ball) return;
+    const ball = Object.values(this.world.objects).find(o => o.class === Ball);
+    const paddle1 = Object.values(this.world.objects).find(
+      o => o.playerId === 1
+    );
+    const paddle2 = Object.values(this.world.objects).find(
+      o => o.playerId === 2
+    );
 
+    if (!ball) return;
     // CHECK LEFT EDGE:
     if (
-      this.ball.position.x <= PADDING + PADDLE_WIDTH &&
-      this.ball.position.y >= this.paddle1.y &&
-      this.ball.position.y <= this.paddle1.position.y + PADDLE_HEIGHT &&
-      this.ball.velocity.x < 0
+      this.paddle1 &&
+      ball.position.x <= PADDING + PADDLE_WIDTH &&
+      ball.position.y >= paddle1.y &&
+      ball.position.y <= paddle1.position.y + PADDLE_HEIGHT &&
+      ball.velocity.x < 0
     ) {
       // ball moving left hit player 1 paddle
-      this.ball.velocity.x *= -1;
-      this.ball.position.x = PADDING + PADDLE_WIDTH + 1;
-    } else if (this.ball.position.x <= 0) {
+      ball.velocity.x *= -1;
+      ball.position.x = PADDING + PADDLE_WIDTH + 1;
+    } else if (ball.position.x <= 0) {
       // ball hit left wall
-      this.ball.velocity.x *= -1;
-      this.ball.position.x = 0;
+      ball.velocity.x *= -1;
+      ball.position.x = 0;
       console.log(`player 2 scored`);
     }
 
     // CHECK RIGHT EDGE:
     if (
-      this.ball.position.x >= WIDTH - PADDING - PADDLE_WIDTH &&
-      this.ball.position.y >= this.paddle2.position.y &&
-      this.ball.position.y <= this.paddle2.position.y + PADDLE_HEIGHT &&
-      this.ball.velocity.x > 0
+      paddle2 &&
+      ball.position.x >= WIDTH - PADDING - PADDLE_WIDTH &&
+      ball.position.y >= paddle2.position.y &&
+      ball.position.y <= paddle2.position.y + PADDLE_HEIGHT &&
+      ball.velocity.x > 0
     ) {
       // ball moving right hits player 2 paddle
-      this.ball.velocity.x *= -1;
-      this.ball.position.x = WIDTH - PADDING - PADDLE_WIDTH - 1;
-    } else if (this.ball.position.x >= WIDTH) {
+      ball.velocity.x *= -1;
+      ball.position.x = WIDTH - PADDING - PADDLE_WIDTH - 1;
+    } else if (ball.position.x >= WIDTH) {
       // ball hit right wall
-      this.ball.velocity.x *= -1;
-      this.ball.position.x = WIDTH - 1;
+      ball.velocity.x *= -1;
+      ball.position.x = WIDTH - 1;
       console.log(`player 1 scored`);
     }
 
     // ball hits top
-    if (this.ball.position.y <= 0) {
-      this.ball.position.y = 1;
-      this.ball.velocity.y *= -1;
-    } else if (this.ball.position.y >= HEIGHT) {
+    if (ball.position.y <= 0) {
+      ball.position.y = 1;
+      ball.velocity.y *= -1;
+    } else if (ball.position.y >= HEIGHT) {
       // ball hits bottom
-      this.ball.position.y = HEIGHT - 1;
-      this.ball.velocity.y *= -1;
+      ball.position.y = HEIGHT - 1;
+      ball.velocity.y *= -1;
     }
   }
 

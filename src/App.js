@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
 import "./App.css";
+import GameArea from "./components/gameArea";
 
 class App extends Component {
   render() {
@@ -15,30 +14,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Query
-          query={gql`
-            {
-              networkStatus @client {
-                isConnected
-              }
-              lanceWorld @client {
-                objects
-              }
-            }
-          `}
-        >
-          {({ loading, data }) => {
-            if (loading) return null;
-            return (
-              <div>
-                <p>
-                  Connection status: {data.networkStatus.isConnected.toString()}
-                </p>
-                <p>Game Objects: {data.lanceWorld.objects.length}</p>
-              </div>
-            );
-          }}
-        </Query>
+        <GameArea />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import Renderer from "lance-gg/es5/render/Renderer";
-import gql from "graphql-tag";
-import client from "../data/graphqlClient";
 import serializeDynamicObject from "./helpers/serializeDynamicObject";
+import ObjectsContainer from "../containers/objects";
+
 export default class MyRenderer extends Renderer {
   constructor(gameEngine, clientEngine) {
     super(gameEngine, clientEngine);
@@ -13,15 +13,10 @@ export default class MyRenderer extends Renderer {
     const serializedObjects = Object.values(this.gameEngine.world.objects).map(
       serializeDynamicObject
     );
-    const UPDATE_GAME_OBJECTS = gql`
-      mutation updateLanceObjects($objects: World) {
-        updateLanceObjects(objects: $objects) @client
-      }
-    `;
-    client.mutate({
-      mutation: UPDATE_GAME_OBJECTS,
-      variables: { objects: serializedObjects }
-    });
+    const paddle1 = serializedObjects[0];
+    const paddle2 = serializedObjects[1];
+    const ball = serializedObjects[2];
+    ObjectsContainer.setState({ paddle1, paddle2, ball });
     // debugger;
     // console.log("Drawing!", { t, dt });
     // for (let objId of Object.keys(this.sprites)) {

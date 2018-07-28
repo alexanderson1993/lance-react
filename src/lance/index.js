@@ -22,6 +22,4 @@ let options = Object.assign(defaults, qsOptions);
 const gameEngine = new MyGameEngine(options);
 const clientEngine = new MyClientEngine(gameEngine, options);
 
-document.addEventListener("DOMContentLoaded", function(e) {
-  clientEngine.start();
-});
+export default clientEngine;
